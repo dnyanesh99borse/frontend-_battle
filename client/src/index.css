@@ -455,11 +455,33 @@
       transform: translateY(0) scale(1);
     }
     50% {
-      transform: translateY(-4px) scale(1.1);
+      transform: translateY(-2px) scale(1.02);
     }
   }
 
   .mouse-scroll-animation {
-    animation: mouseScroll 1.5s ease-in-out infinite;
+    animation: mouseScroll 1.2s ease-in-out infinite;
+  }
+  
+  @keyframes mouseLoaderSlideIn {
+    from {
+      opacity: 0;
+      transform: translate(-50%, -60%) scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+  }
+  
+  @keyframes mouseLoaderSlideOut {
+    from {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    to {
+      opacity: 0;
+      transform: translate(-50%, -40%) scale(0.9);
+    }
   }
 }

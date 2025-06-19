@@ -11,9 +11,9 @@ export function ScrollLoader() {
       const currentScrollY = window.pageYOffset;
       const direction = currentScrollY > lastScrollY.current ? 'down' : 'up';
       
-      // Only show loader when scrolling up and past 200px
-      if (direction === 'up' && currentScrollY > 200) {
-        setScrollDirection('up');
+      // Only show loader when scrolling down and past 100px with significant scroll movement
+      if (direction === 'down' && currentScrollY > 100 && Math.abs(currentScrollY - lastScrollY.current) > 10) {
+        setScrollDirection('down');
         setIsVisible(true);
         
         // Clear existing timeout
@@ -21,10 +21,10 @@ export function ScrollLoader() {
           clearTimeout(timeoutRef.current);
         }
         
-        // Hide after 1.5 seconds
+        // Hide after 800 milliseconds for brief appearance
         timeoutRef.current = setTimeout(() => {
           setIsVisible(false);
-        }, 1500);
+        }, 800);
       }
       
       lastScrollY.current = currentScrollY;
@@ -45,36 +45,40 @@ export function ScrollLoader() {
     <div className="fixed top-1/2 left-1/2 z-50 pointer-events-none mouse-loader-enter">
       <div className="relative">
         {/* Mouse Shape */}
-        <div className="w-16 h-24 bg-gradient-to-b from-gray-800 to-gray-900 dark:from-gray-700 dark:to-gray-800 light:from-gray-200 light:to-gray-300 rounded-t-full rounded-b-2xl border-2 border-gray-600 dark:border-gray-500 light:border-gray-400 shadow-2xl relative mouse-scroll-animation">
+        <div className="w-12 h-20 bg-gradient-to-b from-slate-200 via-slate-100 to-slate-200 dark:from-slate-700 dark:via-slate-600 dark:to-slate-700 rounded-t-full rounded-b-xl border border-slate-300 dark:border-slate-500 shadow-2xl relative mouse-scroll-animation">
           {/* Mouse Scroll Wheel */}
-          <div className="absolute top-3 left-1/2 transform -translate-x-1/2 w-1.5 h-5 bg-gradient-to-b from-blue-500 to-purple-500 rounded-full animate-bounce shadow-lg"></div>
+          <div className="absolute top-2 left-1/2 transform -translate-x-1/2 w-1 h-3 bg-gradient-to-b from-blue-500 to-cyan-400 rounded-full animate-bounce shadow-sm"></div>
           
-          {/* Scroll Direction Indicator */}
-          <div className="absolute -top-10 left-1/2 transform -translate-x-1/2">
+          {/* Scroll Direction Indicator - Down Arrow */}
+          <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2">
             <div className="flex flex-col items-center">
+              <div className="w-0.5 h-4 bg-gradient-to-b from-blue-500 to-transparent animate-pulse"></div>
               <div className="w-2 h-2 bg-blue-500 rounded-full animate-ping"></div>
-              <div className="w-0.5 h-8 bg-gradient-to-t from-blue-500 via-purple-500 to-transparent mt-1 animate-pulse"></div>
-              <div className="text-xs text-gray-600 dark:text-gray-300 light:text-gray-700 mt-2 font-medium">Scrolling</div>
             </div>
           </div>
           
-          {/* Loading dots */}
-          <div className="absolute -bottom-14 left-1/2 transform -translate-x-1/2 flex space-x-1.5">
-            <div className="w-2.5 h-2.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full animate-bounce shadow-md" style={{ animationDelay: '0ms' }}></div>
-            <div className="w-2.5 h-2.5 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full animate-bounce shadow-md" style={{ animationDelay: '150ms' }}></div>
-            <div className="w-2.5 h-2.5 bg-gradient-to-r from-pink-500 to-blue-500 rounded-full animate-bounce shadow-md" style={{ animationDelay: '300ms' }}></div>
+          {/* Sleek Loading Indicator */}
+          <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
+            <div className="flex space-x-1">
+              <div className="w-1 h-1 bg-blue-500 rounded-full animate-pulse" style={{ animationDelay: '0ms' }}></div>
+              <div className="w-1 h-1 bg-cyan-400 rounded-full animate-pulse" style={{ animationDelay: '200ms' }}></div>
+              <div className="w-1 h-1 bg-blue-500 rounded-full animate-pulse" style={{ animationDelay: '400ms' }}></div>
+            </div>
           </div>
           
-          {/* Mouse Click Indicators */}
-          <div className="absolute bottom-2 left-2 w-3 h-3 bg-gray-600 dark:bg-gray-500 light:bg-gray-400 rounded-sm opacity-60"></div>
-          <div className="absolute bottom-2 right-2 w-3 h-3 bg-gray-600 dark:bg-gray-500 light:bg-gray-400 rounded-sm opacity-60"></div>
+          {/* Mouse Button Areas */}
+          <div className="absolute bottom-1.5 left-1.5 w-2 h-2 bg-slate-300 dark:bg-slate-600 rounded-sm opacity-70"></div>
+          <div className="absolute bottom-1.5 right-1.5 w-2 h-2 bg-slate-300 dark:bg-slate-600 rounded-sm opacity-70"></div>
+          
+          {/* Center Line */}
+          <div className="absolute top-6 left-1/2 transform -translate-x-1/2 w-0.5 h-8 bg-slate-300 dark:bg-slate-600 opacity-40"></div>
         </div>
         
-        {/* Glow Effect */}
-        <div className="absolute inset-0 w-16 h-24 bg-gradient-to-b from-blue-500/30 to-purple-500/30 rounded-t-full rounded-b-2xl blur-xl -z-10 animate-pulse"></div>
+        {/* Subtle Glow Effect */}
+        <div className="absolute inset-0 w-12 h-20 bg-gradient-to-b from-blue-400/20 to-cyan-400/20 rounded-t-full rounded-b-xl blur-lg -z-10"></div>
         
-        {/* Outer Glow Ring */}
-        <div className="absolute -inset-4 border-2 border-blue-500/20 rounded-full animate-ping"></div>
+        {/* Minimal Outer Ring */}
+        <div className="absolute -inset-2 border border-blue-400/30 rounded-full animate-ping opacity-50"></div>
       </div>
     </div>
   );
