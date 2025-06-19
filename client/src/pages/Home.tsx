@@ -1,7 +1,16 @@
 import { useState, useEffect, useCallback } from "react";
 import { Star, Sparkles, ArrowRight, PlayCircle, BarChart3, TrendingUp, PieChart, Activity, DollarSign, Users, Calendar, Target } from "lucide-react";
-import { ThemeToggle } from "@/components/ThemeToggle";
+import { NavigationBar } from "@/components/NavigationBar";
 import { CustomerCarousel } from "@/components/CustomerCarousel";
+import { FeaturesSection } from "@/components/FeaturesSection";
+import { StatsSection } from "@/components/StatsSection";
+import { TestimonialsSection } from "@/components/TestimonialsSection";
+import { PricingSection } from "@/components/PricingSection";
+import { CTASection } from "@/components/CTASection";
+import { Footer } from "@/components/Footer";
+import { ScrollLoader } from "@/components/ScrollLoader";
+import { ScrollToTop } from "@/components/ScrollToTop";
+import { ProgressBar } from "@/components/ProgressBar";
 
 const backgroundImages = [
   {
@@ -351,9 +360,12 @@ export default function Home() {
 
   return (
     <>
-      <div className="gradient-bg min-h-screen overflow-x-hidden">
-        <ThemeToggle />
-        
+      <ProgressBar />
+      <NavigationBar />
+      <ScrollLoader />
+      <ScrollToTop />
+      
+      <div className="gradient-bg min-h-screen overflow-x-hidden pt-16">
         {/* Floating Elements */}
         {!isMobile && (
           <>
@@ -489,8 +501,15 @@ export default function Home() {
       
       {/* Customer Carousel Section */}
       <CustomerCarousel />
-    </div>
-    
+      </div>
+      
+      {/* Additional Sections */}
+      <StatsSection />
+      <FeaturesSection />
+      <TestimonialsSection />
+      <PricingSection />
+      <CTASection />
+      <Footer />
     </>
   );
 }
