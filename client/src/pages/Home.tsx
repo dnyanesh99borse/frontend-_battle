@@ -1,5 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { Star, Sparkles, ArrowRight, PlayCircle, BarChart3, TrendingUp, PieChart, Activity, DollarSign, Users, Calendar, Target } from "lucide-react";
+import { ThemeToggle } from "@/components/ThemeToggle";
+import { CustomerCarousel } from "@/components/CustomerCarousel";
 
 const backgroundImages = [
   {
@@ -114,40 +116,40 @@ export default function Home() {
     console.log('See what we do clicked');
   };
 
-  // Mock BI Components
+  // BI Components
   const ReportCard = ({ className }: { className: string }) => (
-    <div className={`${className} bg-slate-800/80 backdrop-blur-sm border border-slate-600/50 rounded-lg p-4 text-white`}>
+    <div className={`${className} bg-slate-800/80 dark:bg-slate-800/80 light:bg-white/90 backdrop-blur-sm border border-slate-600/50 dark:border-slate-600/50 light:border-gray-200 rounded-lg p-4 text-white dark:text-white light:text-gray-900`}>
       <div className="flex items-center justify-between mb-3">
-        <h3 className="text-sm font-semibold text-slate-200">Revenue Report</h3>
+        <h3 className="text-sm font-semibold text-slate-200 dark:text-slate-200 light:text-gray-800">Revenue Report</h3>
         <BarChart3 className="w-4 h-4 text-blue-400" />
       </div>
       <div className="space-y-2">
         <div className="flex justify-between text-xs">
-          <span className="text-slate-400">Q4 2024</span>
+          <span className="text-slate-400 dark:text-slate-400 light:text-gray-600">Q4 2024</span>
           <span className="text-green-400">+12.5%</span>
         </div>
-        <div className="w-full bg-slate-700 rounded-full h-2">
+        <div className="w-full bg-slate-700 dark:bg-slate-700 light:bg-gray-200 rounded-full h-2">
           <div className="bg-blue-500 h-2 rounded-full w-3/4"></div>
         </div>
-        <div className="text-lg font-bold text-white">$2.4M</div>
+        <div className="text-lg font-bold text-white dark:text-white light:text-gray-900">$2.4M</div>
       </div>
     </div>
   );
 
   const AnalyticsReport = ({ className }: { className: string }) => (
-    <div className={`${className} bg-slate-800/80 backdrop-blur-sm border border-slate-600/50 rounded-lg p-4 text-white`}>
+    <div className={`${className} bg-slate-800/80 dark:bg-slate-800/80 light:bg-white/90 backdrop-blur-sm border border-slate-600/50 dark:border-slate-600/50 light:border-gray-200 rounded-lg p-4 text-white dark:text-white light:text-gray-900`}>
       <div className="flex items-center justify-between mb-3">
-        <h3 className="text-sm font-semibold text-slate-200">User Analytics</h3>
+        <h3 className="text-sm font-semibold text-slate-200 dark:text-slate-200 light:text-gray-800">User Analytics</h3>
         <Users className="w-4 h-4 text-purple-400" />
       </div>
       <div className="grid grid-cols-2 gap-3">
         <div className="text-center">
-          <div className="text-xl font-bold text-white">94.2%</div>
-          <div className="text-xs text-slate-400">Retention</div>
+          <div className="text-xl font-bold text-white dark:text-white light:text-gray-900">94.2%</div>
+          <div className="text-xs text-slate-400 dark:text-slate-400 light:text-gray-600">Retention</div>
         </div>
         <div className="text-center">
-          <div className="text-xl font-bold text-white">1.2M</div>
-          <div className="text-xs text-slate-400">Active Users</div>
+          <div className="text-xl font-bold text-white dark:text-white light:text-gray-900">1.2M</div>
+          <div className="text-xs text-slate-400 dark:text-slate-400 light:text-gray-600">Active Users</div>
         </div>
       </div>
       <div className="mt-3 flex space-x-1">
@@ -348,29 +350,32 @@ export default function Home() {
   };
 
   return (
-    <div className="gradient-bg min-h-screen overflow-x-hidden">
-      {/* Floating Elements */}
-      {!isMobile && (
-        <>
-          <div className="floating-element w-20 h-20 top-10 right-20" style={{ animationDelay: '0s' }}></div>
-          <div className="floating-element w-12 h-12 bottom-20 left-10" style={{ animationDelay: '2s' }}></div>
-          <div className="floating-element w-16 h-16 top-1/3 left-1/4" style={{ animationDelay: '4s' }}></div>
-          
-          {/* Floating Particles */}
-          {particles.map((particle) => (
-            <div
-              key={particle.id}
-              className="particle"
-              style={{
-                left: `${particle.left}%`,
-                width: `${particle.size}px`,
-                height: `${particle.size}px`,
-                animationDelay: `${particle.delay}s`
-              }}
-            />
-          ))}
-        </>
-      )}
+    <>
+      <div className="gradient-bg min-h-screen overflow-x-hidden">
+        <ThemeToggle />
+        
+        {/* Floating Elements */}
+        {!isMobile && (
+          <>
+            <div className="floating-element w-20 h-20 top-10 right-20" style={{ animationDelay: '0s' }}></div>
+            <div className="floating-element w-12 h-12 bottom-20 left-10" style={{ animationDelay: '2s' }}></div>
+            <div className="floating-element w-16 h-16 top-1/3 left-1/4" style={{ animationDelay: '4s' }}></div>
+            
+            {/* Floating Particles */}
+            {particles.map((particle) => (
+              <div
+                key={particle.id}
+                className="particle"
+                style={{
+                  left: `${particle.left}%`,
+                  width: `${particle.size}px`,
+                  height: `${particle.size}px`,
+                  animationDelay: `${particle.delay}s`
+                }}
+              />
+            ))}
+          </>
+        )}
 
       {/* Background Images Container */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none" id="backgroundContainer">
@@ -412,7 +417,7 @@ export default function Home() {
         <div className="flex-1 flex items-center justify-center px-4 py-16">
           <div className="max-w-4xl mx-auto text-center">
             {/* Main Headline */}
-            <h1 className="main-title text-4xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
+            <h1 className="main-title text-4xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight text-white dark:text-white light:text-gray-900">
               Create{' '}
               <span
                 className="hover-term"
@@ -454,7 +459,7 @@ export default function Home() {
             {/* Subheading */}
             <div className="flex items-center justify-center mb-12">
               <Sparkles className="sparkle w-6 h-6 mr-2" />
-              <h2 className="text-xl md:text-2xl text-white font-medium">Now with AI-insights</h2>
+              <h2 className="text-xl md:text-2xl text-white dark:text-white light:text-gray-700 font-medium">Now with AI-insights</h2>
             </div>
 
             {/* CTA Button */}
@@ -481,6 +486,11 @@ export default function Home() {
           </div>
         </div>
       </div>
+      
+      {/* Customer Carousel Section */}
+      <CustomerCarousel />
     </div>
+    
+    </>
   );
 }
