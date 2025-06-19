@@ -429,59 +429,67 @@ export default function Home() {
         <div className="flex-1 flex items-center justify-center px-4 py-16">
           <div className="max-w-4xl mx-auto text-center">
             {/* Main Headline */}
-            <h1 className="main-title text-4xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight text-white dark:text-white light:text-gray-900">
-              Create{' '}
-              <span
-                className="hover-term"
-                data-category="reports"
-                onMouseEnter={() => handleTermHover('reports')}
-                onMouseLeave={handleTermLeave}
-              >
-                reports
+            <h1 className="text-5xl md:text-7xl lg:text-8xl mb-10 leading-[0.9] tracking-tight">
+              <span className="block main-title mb-2">Create{' '}</span>
+              <span className="block">
+                <span
+                  className="hover-term"
+                  data-category="reports"
+                  onMouseEnter={() => handleTermHover('reports')}
+                  onMouseLeave={handleTermLeave}
+                >
+                  reports
+                </span>
+                <span className="main-title">,{' '}</span>
+                <span
+                  className="hover-term"
+                  data-category="forecasts"
+                  onMouseEnter={() => handleTermHover('forecasts')}
+                  onMouseLeave={handleTermLeave}
+                >
+                  forecasts
+                </span>
+                <span className="main-title">,</span>
               </span>
-              ,{' '}
-              <span
-                className="hover-term"
-                data-category="forecasts"
-                onMouseEnter={() => handleTermHover('forecasts')}
-                onMouseLeave={handleTermLeave}
-              >
-                forecasts
-              </span>
-              ,<br />
-              <span
-                className="hover-term"
-                data-category="dashboards"
-                onMouseEnter={() => handleTermHover('dashboards')}
-                onMouseLeave={handleTermLeave}
-              >
-                dashboards
-              </span>{' '}
-              &{' '}
-              <span
-                className="hover-term"
-                data-category="consolidations"
-                onMouseEnter={() => handleTermHover('consolidations')}
-                onMouseLeave={handleTermLeave}
-              >
-                consolidations
+              <span className="block">
+                <span
+                  className="hover-term"
+                  data-category="dashboards"
+                  onMouseEnter={() => handleTermHover('dashboards')}
+                  onMouseLeave={handleTermLeave}
+                >
+                  dashboards
+                </span>{' '}
+                <span className="main-title">&{' '}</span>
+                <span
+                  className="hover-term"
+                  data-category="consolidations"
+                  onMouseEnter={() => handleTermHover('consolidations')}
+                  onMouseLeave={handleTermLeave}
+                >
+                  consolidations
+                </span>
               </span>
             </h1>
 
             {/* Subheading */}
             <div className="flex items-center justify-center mb-12">
-              <Sparkles className="sparkle w-6 h-6 mr-2" />
-              <h2 className="text-xl md:text-2xl text-white dark:text-white light:text-gray-700 font-medium">Now with AI-insights</h2>
+              <Sparkles className="sparkle w-7 h-7 mr-3" />
+              <h2 className="text-2xl md:text-3xl font-semibold">
+                <span className="bg-gradient-to-r from-orange-400 via-yellow-400 to-orange-500 bg-clip-text text-transparent">
+                  Now with AI-insights
+                </span>
+              </h2>
             </div>
 
             {/* CTA Button */}
-            <div className="mb-6">
+            <div className="mb-8">
               <button
                 onClick={handleCtaClick}
-                className="cta-button text-white font-semibold px-8 py-4 rounded-lg text-lg shadow-lg inline-flex items-center"
+                className="cta-button text-white px-10 py-5 rounded-2xl text-xl shadow-2xl inline-flex items-center group"
               >
-                Start 14-day free trial
-                <ArrowRight className="w-5 h-5 ml-2" />
+                <span>Start 14-day free trial</span>
+                <ArrowRight className="w-6 h-6 ml-3 group-hover:translate-x-1 transition-transform duration-300" />
               </button>
             </div>
 
@@ -489,10 +497,10 @@ export default function Home() {
             <div>
               <button
                 onClick={handleSecondaryClick}
-                className="secondary-link text-base inline-flex items-center bg-transparent border-none cursor-pointer"
+                className="secondary-link text-lg inline-flex items-center bg-transparent border-none cursor-pointer group"
               >
-                <PlayCircle className="w-5 h-5 mr-2" />
-                See what we do
+                <PlayCircle className="w-6 h-6 mr-3 group-hover:scale-110 transition-transform duration-300" />
+                <span className="font-medium">See what we do</span>
               </button>
             </div>
           </div>
